@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D90E0F892436C7A300C1CCAD /* MASShortcut.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D90E0F882436C7A300C1CCAD /* MASShortcut.framework */; };
+		D90E0F8A2436C7A300C1CCAD /* MASShortcut.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D90E0F882436C7A300C1CCAD /* MASShortcut.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		D90E0F8E2436C7EE00C1CCAD /* MASShortcut.framework.dSYM in CopyFiles */ = {isa = PBXBuildFile; fileRef = D90E0F8D2436C7EE00C1CCAD /* MASShortcut.framework.dSYM */; };
 		D98CB7A9243438E600EA4590 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98CB7A8243438E600EA4590 /* AppDelegate.swift */; };
 		D98CB7AB243438E600EA4590 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98CB7AA243438E600EA4590 /* ContentView.swift */; };
 		D98CB7AD243438E600EA4590 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D98CB7AC243438E600EA4590 /* Assets.xcassets */; };
@@ -14,7 +17,33 @@
 		D98CB7B3243438E700EA4590 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D98CB7B1243438E700EA4590 /* Main.storyboard */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		D90E0F8B2436C7A300C1CCAD /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				D90E0F8A2436C7A300C1CCAD /* MASShortcut.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D90E0F8C2436C7C200C1CCAD /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 16;
+			files = (
+				D90E0F8E2436C7EE00C1CCAD /* MASShortcut.framework.dSYM in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		D90E0F882436C7A300C1CCAD /* MASShortcut.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MASShortcut.framework; path = Carthage/Build/Mac/MASShortcut.framework; sourceTree = "<group>"; };
+		D90E0F8D2436C7EE00C1CCAD /* MASShortcut.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; name = MASShortcut.framework.dSYM; path = Carthage/Build/Mac/MASShortcut.framework.dSYM; sourceTree = "<group>"; };
 		D98CB7A5243438E600EA4590 /* portals.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = portals.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D98CB7A8243438E600EA4590 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D98CB7AA243438E600EA4590 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -30,17 +59,28 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D90E0F892436C7A300C1CCAD /* MASShortcut.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		D90E0F872436C7A300C1CCAD /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				D90E0F8D2436C7EE00C1CCAD /* MASShortcut.framework.dSYM */,
+				D90E0F882436C7A300C1CCAD /* MASShortcut.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		D98CB79C243438E600EA4590 = {
 			isa = PBXGroup;
 			children = (
 				D98CB7A7243438E600EA4590 /* portals */,
 				D98CB7A6243438E600EA4590 /* Products */,
+				D90E0F872436C7A300C1CCAD /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -84,6 +124,8 @@
 				D98CB7A1243438E600EA4590 /* Sources */,
 				D98CB7A2243438E600EA4590 /* Frameworks */,
 				D98CB7A3243438E600EA4590 /* Resources */,
+				D90E0F8B2436C7A300C1CCAD /* Embed Frameworks */,
+				D90E0F8C2436C7C200C1CCAD /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -288,6 +330,10 @@
 				DEVELOPMENT_TEAM = UG9NWXG877;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/Mac",
+				);
 				INFOPLIST_FILE = portals/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -311,6 +357,10 @@
 				DEVELOPMENT_TEAM = UG9NWXG877;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/Mac",
+				);
 				INFOPLIST_FILE = portals/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

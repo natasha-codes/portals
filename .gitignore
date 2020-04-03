@@ -3,3 +3,6 @@
 
 ## User settings
 xcuserdata/
+
+## Carthage source and build artifacts
+Carthage
