@@ -16,6 +16,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     var window: NSWindow!
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
+        setupBindings()
+        
         window = NSWindow(
             contentRect: NSRect(x: 0, y: 0, width: 480, height: 300),
             styleMask: [.titled, .closable, .miniaturizable, .resizable, .fullSizeContentView],
@@ -25,5 +27,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
         window.contentView = NSHostingView(rootView: ContentView())
         window.makeKeyAndOrderFront(nil)
+    }
+    
+    private func setupBindings() {
+        MASShortcutBinder.shared()?.bindShortcut(withDefaultsKey: "SummonPortals", toAction: {
+            print("whoooooo we did a thing")
+        })
     }
 }

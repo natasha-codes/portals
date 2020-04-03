@@ -7,14 +7,26 @@
 //
 
 import SwiftUI
+import MASShortcut
 
 struct ContentView: View {
     var body: some View {
-        Text("Hello, World!")
+        BindingsView()
             .frame(maxWidth: .infinity, maxHeight: .infinity)
     }
 }
 
+struct BindingsView: NSViewRepresentable {
+    typealias NSViewType = MASShortcutView
+
+    func makeNSView(context: Context) -> MASShortcutView {
+        let shortcutView = MASShortcutView()
+        shortcutView.associatedUserDefaultsKey = "SummonPortals"
+        return shortcutView
+    }
+    
+    func updateNSView(_ nsView: MASShortcutView, context: Context) {}
+}
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
