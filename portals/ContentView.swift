@@ -18,7 +18,15 @@ struct ContentView: View {
     }
 
     private func queryRunningApplications() {
-        print("hello")
+        print("--- RUNNING APPLICATIONS ---")
+        WindowManager.shared.getRunningApplications().forEach({ print($0) })
+        print("--- END RUNNING APPLICATIONS ---")
+
+        print("\n\n")
+
+        print("--- OPEN WINDOWS ---")
+        WindowManager.shared.getWindows().forEach({ print($0) })
+        print("--- END OPEN WINDOWS ---")
     }
 }
 
