@@ -15,6 +15,7 @@
 		D98CB7AD243438E600EA4590 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D98CB7AC243438E600EA4590 /* Assets.xcassets */; };
 		D98CB7B0243438E600EA4590 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D98CB7AF243438E600EA4590 /* Preview Assets.xcassets */; };
 		D98CB7B3243438E700EA4590 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D98CB7B1243438E700EA4590 /* Main.storyboard */; };
+		D9C004832436D7E400728BC4 /* WindowManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9C004822436D7E400728BC4 /* WindowManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -52,6 +53,7 @@
 		D98CB7B2243438E700EA4590 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		D98CB7B4243438E700EA4590 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D98CB7B5243438E700EA4590 /* portals.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = portals.entitlements; sourceTree = "<group>"; };
+		D9C004822436D7E400728BC4 /* WindowManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindowManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,6 +104,7 @@
 				D98CB7B4243438E700EA4590 /* Info.plist */,
 				D98CB7B5243438E700EA4590 /* portals.entitlements */,
 				D98CB7AE243438E600EA4590 /* Preview Content */,
+				D9C004822436D7E400728BC4 /* WindowManager.swift */,
 			);
 			path = portals;
 			sourceTree = "<group>";
@@ -188,6 +191,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D98CB7AB243438E600EA4590 /* ContentView.swift in Sources */,
+				D9C004832436D7E400728BC4 /* WindowManager.swift in Sources */,
 				D98CB7A9243438E600EA4590 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -324,10 +328,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = portals/portals.entitlements;
+				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"portals/Preview Content\"";
-				DEVELOPMENT_TEAM = 6TL2Q9HB68;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -351,10 +356,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = portals/portals.entitlements;
+				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"portals/Preview Content\"";
-				DEVELOPMENT_TEAM = 6TL2Q9HB68;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				FRAMEWORK_SEARCH_PATHS = (
