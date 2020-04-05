@@ -18,7 +18,7 @@ struct WindowManager {
     func getAllOpenWindows() -> [Window] {
         Application.all().flatMap { application -> [Window] in
 
-            let pidResult: AXResult<pid_t> = application.pid()
+            let pidResult: PAXResult<pid_t> = application.pid()
             guard let pid = pidResult.success else {
                 print("ERROR: failed to get pid of application \(application): \(pidResult.failure!)")
                 return []
@@ -29,30 +29,20 @@ struct WindowManager {
                 return []
             }
 
-            let windowsResult: AXResult<[UIElement]?> = application.windows()
-            guard let maybeWindows = windowsResult.success else {
+            let windowsResult: PAXResult<[UIElement]> = application.windows()
+            guard let windows = windowsResult.success else {
                 print("ERROR: failed to get windows of application \(application): \(windowsResult.failure!)")
                 return []
             }
 
-            guard let windows = maybeWindows else {
-                print("WARNING: unable to get windows of application \(application)")
-                return []
-            }
-
             return windows.compactMap { window -> Window? in
-                let windowTitleResult: AXResult<String?> = window.attribute(.title)
-                guard let maybeWindowTitle = windowTitleResult.success else {
+                let windowTitleResult: PAXResult<String> = window.attribute(.title)
+                guard let windowTitle = windowTitleResult.success else {
                     print("ERROR: failed to get title of window \(window): \(windowTitleResult.failure!)")
                     return nil
                 }
 
-                guard let windowTitle = maybeWindowTitle else {
-                    print("WARNING: unable to get title of window \(window)")
-                    return nil
-                }
-
-                print(window.attribute(.subrole).success!!)
+                print(window.attribute(.subrole).success!)
 
                 return Window(owner: runningApplication, title: windowTitle)
             }
