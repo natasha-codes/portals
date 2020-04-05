@@ -14,11 +14,6 @@ struct ContentView: View {
     var body: some View {
         BindingsView()
             .frame(maxWidth: .infinity, maxHeight: .infinity)
-            .onAppear(perform: self.queryRunningApplications)
-    }
-
-    private func queryRunningApplications() {
-        print("hello")
     }
 }
 
