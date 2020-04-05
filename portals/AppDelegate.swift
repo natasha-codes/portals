@@ -23,7 +23,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             return
         }
 
-        let _ = WindowManager.shared.getAllOpenWindows()
+        print(WindowManager.shared.getAllOpenWindows())
 
         setupBindings()
         setupWindow()

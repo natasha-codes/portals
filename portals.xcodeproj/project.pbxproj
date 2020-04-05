@@ -13,6 +13,8 @@
 		D95898C4243942DA00ADDB46 /* AXSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D95898C3243942DA00ADDB46 /* AXSwift.framework */; };
 		D95898C5243942DA00ADDB46 /* AXSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D95898C3243942DA00ADDB46 /* AXSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		D95898C7243942F000ADDB46 /* AXSwift.framework.dSYM in CopyFiles */ = {isa = PBXBuildFile; fileRef = D95898C6243942F000ADDB46 /* AXSwift.framework.dSYM */; };
+		D966CDFE243A60B80039E7BE /* AXSwift+Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = D966CDFD243A60B80039E7BE /* AXSwift+Result.swift */; };
+		D966CE04243A7AA80039E7BE /* Result+Getters.swift in Sources */ = {isa = PBXBuildFile; fileRef = D966CE03243A7AA80039E7BE /* Result+Getters.swift */; };
 		D98CB7A9243438E600EA4590 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98CB7A8243438E600EA4590 /* AppDelegate.swift */; };
 		D98CB7AB243438E600EA4590 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98CB7AA243438E600EA4590 /* ContentView.swift */; };
 		D98CB7AD243438E600EA4590 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D98CB7AC243438E600EA4590 /* Assets.xcassets */; };
@@ -52,6 +54,8 @@
 		D90E0F8D2436C7EE00C1CCAD /* MASShortcut.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; name = MASShortcut.framework.dSYM; path = Carthage/Build/Mac/MASShortcut.framework.dSYM; sourceTree = "<group>"; };
 		D95898C3243942DA00ADDB46 /* AXSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AXSwift.framework; path = Carthage/Build/Mac/AXSwift.framework; sourceTree = "<group>"; };
 		D95898C6243942F000ADDB46 /* AXSwift.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; name = AXSwift.framework.dSYM; path = Carthage/Build/Mac/AXSwift.framework.dSYM; sourceTree = "<group>"; };
+		D966CDFD243A60B80039E7BE /* AXSwift+Result.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AXSwift+Result.swift"; sourceTree = "<group>"; };
+		D966CE03243A7AA80039E7BE /* Result+Getters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Result+Getters.swift"; sourceTree = "<group>"; };
 		D98CB7A5243438E600EA4590 /* portals.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = portals.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D98CB7A8243438E600EA4590 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D98CB7AA243438E600EA4590 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -95,6 +99,18 @@
 			name = dSYMs;
 			sourceTree = "<group>";
 		};
+		D966CE00243A60D20039E7BE /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				D98CB7B5243438E700EA4590 /* portals.entitlements */,
+				D98CB7B4243438E700EA4590 /* Info.plist */,
+				D98CB7AC243438E600EA4590 /* Assets.xcassets */,
+				D98CB7B1243438E700EA4590 /* Main.storyboard */,
+				D98CB7AE243438E600EA4590 /* Preview Content */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 		D98CB79C243438E600EA4590 = {
 			isa = PBXGroup;
 			children = (
@@ -115,14 +131,12 @@
 		D98CB7A7243438E600EA4590 /* portals */ = {
 			isa = PBXGroup;
 			children = (
-				D98CB7B5243438E700EA4590 /* portals.entitlements */,
-				D98CB7B4243438E700EA4590 /* Info.plist */,
 				D98CB7A8243438E600EA4590 /* AppDelegate.swift */,
+				D966CDFD243A60B80039E7BE /* AXSwift+Result.swift */,
 				D98CB7AA243438E600EA4590 /* ContentView.swift */,
+				D966CE03243A7AA80039E7BE /* Result+Getters.swift */,
 				D9C004822436D7E400728BC4 /* WindowManager.swift */,
-				D98CB7AC243438E600EA4590 /* Assets.xcassets */,
-				D98CB7B1243438E700EA4590 /* Main.storyboard */,
-				D98CB7AE243438E600EA4590 /* Preview Content */,
+				D966CE00243A60D20039E7BE /* Supporting Files */,
 			);
 			path = portals;
 			sourceTree = "<group>";
@@ -209,8 +223,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				D98CB7AB243438E600EA4590 /* ContentView.swift in Sources */,
+				D966CE04243A7AA80039E7BE /* Result+Getters.swift in Sources */,
 				D9C004832436D7E400728BC4 /* WindowManager.swift in Sources */,
 				D98CB7A9243438E600EA4590 /* AppDelegate.swift in Sources */,
+				D966CDFE243A60B80039E7BE /* AXSwift+Result.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

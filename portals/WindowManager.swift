@@ -17,16 +17,44 @@ struct WindowManager {
 
     func getAllOpenWindows() -> [Window] {
         Application.all().flatMap { application -> [Window] in
-            do {
-                guard let windows = try application.windows() else {
-                    print("WARNING: no error, but no windows returned")
-                    return []
+
+            let pidResult: AXResult<pid_t> = application.pid()
+            guard let pid = pidResult.success else {
+                print("ERROR: failed to get pid of application \(application): \(pidResult.failure!)")
+                return []
+            }
+
+            guard let runningApplication = NSRunningApplication(processIdentifier: pid) else {
+                print("ERROR: failed to find running process for pid \(pid)")
+                return []
+            }
+
+            let windowsResult: AXResult<[UIElement]?> = application.windows()
+            guard let maybeWindows = windowsResult.success else {
+                print("ERROR: failed to get windows of application \(application): \(windowsResult.failure!)")
+                return []
+            }
+
+            guard let windows = maybeWindows else {
+                print("WARNING: unable to get windows of application \(application)")
+                return []
+            }
+
+            return windows.compactMap { window -> Window? in
+                let windowTitleResult: AXResult<String?> = window.attribute(.title)
+                guard let maybeWindowTitle = windowTitleResult.success else {
+                    print("ERROR: failed to get title of window \(window): \(windowTitleResult.failure!)")
+                    return nil
                 }
 
-                return []
-            } catch let e {
-                print("ERROR: failed to get windows for application \(application): \(e)")
-                return []
+                guard let windowTitle = maybeWindowTitle else {
+                    print("WARNING: unable to get title of window \(window)")
+                    return nil
+                }
+
+                print(window.attribute(.subrole).success!!)
+
+                return Window(owner: runningApplication, title: windowTitle)
             }
         }
     }
@@ -34,10 +62,17 @@ struct WindowManager {
 
 extension WindowManager {
     struct Window: CustomStringConvertible {
-        let ownerPid: Int
-        let ownerName: String?
-        let title: String?
+        private let owner: NSRunningApplication
+        let title: String
 
-        var description: String { "[\(self.ownerPid)]: \(self.title ?? "no title") (\(self.ownerName ?? "no owner name"))" }
+        var ownerPid: pid_t { return owner.processIdentifier }
+        var ownerName: String? { return owner.localizedName }
+
+        init(owner: NSRunningApplication, title: String) {
+            self.owner = owner
+            self.title = title.isEmpty ? "NOTITLE" : title
+        }
+
+        var description: String { "[\(self.ownerPid)]: \(self.title) (\(self.ownerName ?? "no owner name"))" }
     }
 }
