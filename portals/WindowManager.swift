@@ -10,10 +10,6 @@ import Foundation
 import AppKit
 import AXSwift
 
-// `WindowManager` handles aggregating all the information we need about a user's open
-// windows from various sources, and presenting it to us in a unified and interactive format.
-//
-// Sources: `NSRunningApplication`, `CGWindowListCopyWindowInfo`, `NSAppleScript`
 struct WindowManager {
     static let shared: WindowManager = WindowManager()
 
