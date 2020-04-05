@@ -12,10 +12,12 @@ import AXSwift
 
 struct WindowManager {
     static let shared: WindowManager = WindowManager()
+    static let acceptedSubroles: Set<Subrole> = { Set([.standardWindow]) }()
 
     private init() {}
 
-    func getAllOpenWindows() -> [Window] {
+    /// Get all open windows with accepted subroles.
+    func getAll() -> [Window] {
         Application.all().flatMap { application -> [Window] in
 
             let pidResult: PAXResult<pid_t> = application.pid()
@@ -36,15 +38,23 @@ struct WindowManager {
             }
 
             return windows.compactMap { window -> Window? in
-                let windowTitleResult: PAXResult<String> = window.attribute(.title)
-                guard let windowTitle = windowTitleResult.success else {
-                    print("ERROR: failed to get title of window \(window): \(windowTitleResult.failure!)")
+                let titleResult: PAXResult<String> = window.attribute(.title)
+                guard let title = titleResult.success else {
+                    print("ERROR: failed to get title of window \(window): \(titleResult.failure!)")
                     return nil
                 }
 
-                print(window.attribute(.subrole).success!)
+                let subroleResult: PAXResult<String> = window.attribute(.subrole)
+                guard let subrole = subroleResult.success else {
+                    print("ERROR: failed to get subrole of windows \(window): \(subroleResult.failure!)")
+                    return nil
+                }
 
-                return Window(owner: runningApplication, title: windowTitle)
+                if WindowManager.acceptedSubroles.contains(subrole) {
+                    return Window(title: title, owner: runningApplication)
+                } else {
+                    return nil
+                }
             }
         }
     }
@@ -52,17 +62,24 @@ struct WindowManager {
 
 extension WindowManager {
     struct Window: CustomStringConvertible {
-        private let owner: NSRunningApplication
         let title: String
+        private let owner: NSRunningApplication
 
         var ownerPid: pid_t { return owner.processIdentifier }
         var ownerName: String? { return owner.localizedName }
 
-        init(owner: NSRunningApplication, title: String) {
-            self.owner = owner
+        init(title: String, owner: NSRunningApplication) {
             self.title = title.isEmpty ? "NOTITLE" : title
+            self.owner = owner
         }
 
         var description: String { "[\(self.ownerPid)]: \(self.title) (\(self.ownerName ?? "no owner name"))" }
+    }
+}
+
+private extension Set where Element == Subrole {
+    func contains(_ subroleString: String) -> Bool {
+        guard let subrole = Subrole(rawValue: subroleString) else { return false }
+        return contains(subrole)
     }
 }
