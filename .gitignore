@@ -5,4 +5,7 @@
 xcuserdata/
 
 ## Carthage source and build artifacts
-Carthage
+Carthage/
+
+## Local build directory
+DerivedData/

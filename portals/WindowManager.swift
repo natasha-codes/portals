@@ -8,37 +8,30 @@
 
 import Foundation
 import AppKit
+import AXSwift
 
+// `WindowManager` handles aggregating all the information we need about a user's open
+// windows from various sources, and presenting it to us in a unified and interactive format.
+//
+// Sources: `NSRunningApplication`, `CGWindowListCopyWindowInfo`, `NSAppleScript`
 struct WindowManager {
     static let shared: WindowManager = WindowManager()
 
     private init() {}
 
-    func getWindows() -> [Window] {
-        guard let windowDicts = CGWindowListCopyWindowInfo(.optionAll, kCGNullWindowID) as? [[String: Any]] else {
-            print("ERROR: failed to get windows")
-            return []
-        }
+    func getAllOpenWindows() -> [Window] {
+        Application.all().flatMap { application -> [Window] in
+            do {
+                guard let windows = try application.windows() else {
+                    print("WARNING: no error, but no windows returned")
+                    return []
+                }
 
-        return windowDicts.compactMap { dict in
-            guard let ownerPid = dict[kCGWindowOwnerPID as String] as? NSNumber else {
-                print("ERROR: failed to find window owner PID")
-                return nil
+                return []
+            } catch let e {
+                print("ERROR: failed to get windows for application \(application): \(e)")
+                return []
             }
-
-            return Window(ownerPid: ownerPid.intValue,
-                          ownerName: dict[kCGWindowOwnerName as String] as? String,
-                          title: dict[kCGWindowName as String] as? String)
-        }
-    }
-
-    func getRunningApplications() -> [Application] {
-        NSWorkspace.shared.runningApplications.map { application in
-            let pid = Int(application.processIdentifier)
-            let bundleId = application.bundleIdentifier ?? "no bundle id"
-            let name = application.localizedName ?? "no name"
-
-            return Application(pid: pid, bundleId: bundleId, name: name)
         }
     }
 }
@@ -50,13 +43,5 @@ extension WindowManager {
         let title: String?
 
         var description: String { "[\(self.ownerPid)]: \(self.title ?? "no title") (\(self.ownerName ?? "no owner name"))" }
-    }
-
-    struct Application: CustomStringConvertible {
-        let pid: Int
-        let bundleId: String
-        let name: String
-
-        var description: String { "[\(self.pid)]: \(self.bundleId) - \(self.name)" }
     }
 }

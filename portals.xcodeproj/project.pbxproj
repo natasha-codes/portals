@@ -10,6 +10,9 @@
 		D90E0F892436C7A300C1CCAD /* MASShortcut.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D90E0F882436C7A300C1CCAD /* MASShortcut.framework */; };
 		D90E0F8A2436C7A300C1CCAD /* MASShortcut.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D90E0F882436C7A300C1CCAD /* MASShortcut.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		D90E0F8E2436C7EE00C1CCAD /* MASShortcut.framework.dSYM in CopyFiles */ = {isa = PBXBuildFile; fileRef = D90E0F8D2436C7EE00C1CCAD /* MASShortcut.framework.dSYM */; };
+		D95898C4243942DA00ADDB46 /* AXSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D95898C3243942DA00ADDB46 /* AXSwift.framework */; };
+		D95898C5243942DA00ADDB46 /* AXSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D95898C3243942DA00ADDB46 /* AXSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		D95898C7243942F000ADDB46 /* AXSwift.framework.dSYM in CopyFiles */ = {isa = PBXBuildFile; fileRef = D95898C6243942F000ADDB46 /* AXSwift.framework.dSYM */; };
 		D98CB7A9243438E600EA4590 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98CB7A8243438E600EA4590 /* AppDelegate.swift */; };
 		D98CB7AB243438E600EA4590 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98CB7AA243438E600EA4590 /* ContentView.swift */; };
 		D98CB7AD243438E600EA4590 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D98CB7AC243438E600EA4590 /* Assets.xcassets */; };
@@ -26,6 +29,7 @@
 			dstSubfolderSpec = 10;
 			files = (
 				D90E0F8A2436C7A300C1CCAD /* MASShortcut.framework in Embed Frameworks */,
+				D95898C5243942DA00ADDB46 /* AXSwift.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -36,6 +40,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 16;
 			files = (
+				D95898C7243942F000ADDB46 /* AXSwift.framework.dSYM in CopyFiles */,
 				D90E0F8E2436C7EE00C1CCAD /* MASShortcut.framework.dSYM in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -45,6 +50,8 @@
 /* Begin PBXFileReference section */
 		D90E0F882436C7A300C1CCAD /* MASShortcut.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MASShortcut.framework; path = Carthage/Build/Mac/MASShortcut.framework; sourceTree = "<group>"; };
 		D90E0F8D2436C7EE00C1CCAD /* MASShortcut.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; name = MASShortcut.framework.dSYM; path = Carthage/Build/Mac/MASShortcut.framework.dSYM; sourceTree = "<group>"; };
+		D95898C3243942DA00ADDB46 /* AXSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AXSwift.framework; path = Carthage/Build/Mac/AXSwift.framework; sourceTree = "<group>"; };
+		D95898C6243942F000ADDB46 /* AXSwift.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; name = AXSwift.framework.dSYM; path = Carthage/Build/Mac/AXSwift.framework.dSYM; sourceTree = "<group>"; };
 		D98CB7A5243438E600EA4590 /* portals.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = portals.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D98CB7A8243438E600EA4590 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D98CB7AA243438E600EA4590 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -62,6 +69,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D90E0F892436C7A300C1CCAD /* MASShortcut.framework in Frameworks */,
+				D95898C4243942DA00ADDB46 /* AXSwift.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -71,10 +79,20 @@
 		D90E0F872436C7A300C1CCAD /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				D90E0F8D2436C7EE00C1CCAD /* MASShortcut.framework.dSYM */,
+				D95898CB2439431600ADDB46 /* dSYMs */,
+				D95898C3243942DA00ADDB46 /* AXSwift.framework */,
 				D90E0F882436C7A300C1CCAD /* MASShortcut.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		D95898CB2439431600ADDB46 /* dSYMs */ = {
+			isa = PBXGroup;
+			children = (
+				D95898C6243942F000ADDB46 /* AXSwift.framework.dSYM */,
+				D90E0F8D2436C7EE00C1CCAD /* MASShortcut.framework.dSYM */,
+			);
+			name = dSYMs;
 			sourceTree = "<group>";
 		};
 		D98CB79C243438E600EA4590 = {
@@ -97,14 +115,14 @@
 		D98CB7A7243438E600EA4590 /* portals */ = {
 			isa = PBXGroup;
 			children = (
+				D98CB7B5243438E700EA4590 /* portals.entitlements */,
+				D98CB7B4243438E700EA4590 /* Info.plist */,
 				D98CB7A8243438E600EA4590 /* AppDelegate.swift */,
 				D98CB7AA243438E600EA4590 /* ContentView.swift */,
+				D9C004822436D7E400728BC4 /* WindowManager.swift */,
 				D98CB7AC243438E600EA4590 /* Assets.xcassets */,
 				D98CB7B1243438E700EA4590 /* Main.storyboard */,
-				D98CB7B4243438E700EA4590 /* Info.plist */,
-				D98CB7B5243438E700EA4590 /* portals.entitlements */,
 				D98CB7AE243438E600EA4590 /* Preview Content */,
-				D9C004822436D7E400728BC4 /* WindowManager.swift */,
 			);
 			path = portals;
 			sourceTree = "<group>";
@@ -328,11 +346,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = portals/portals.entitlements;
-				CODE_SIGN_IDENTITY = "-";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"portals/Preview Content\"";
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = UG9NWXG877;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -347,6 +365,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.15;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.natasha-codes.portals";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
@@ -356,11 +375,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = portals/portals.entitlements;
-				CODE_SIGN_IDENTITY = "-";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"portals/Preview Content\"";
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = UG9NWXG877;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -375,6 +394,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.15;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.natasha-codes.portals";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
