@@ -132,10 +132,10 @@
 			isa = PBXGroup;
 			children = (
 				D98CB7A8243438E600EA4590 /* AppDelegate.swift */,
+				D9C004822436D7E400728BC4 /* ApplicationManager.swift */,
 				D966CDFD243A60B80039E7BE /* AXSwift+Result.swift */,
 				D98CB7AA243438E600EA4590 /* ContentView.swift */,
 				D966CE03243A7AA80039E7BE /* Result+Getters.swift */,
-				D9C004822436D7E400728BC4 /* ApplicationManager.swift */,
 				D966CE00243A60D20039E7BE /* Supporting Files */,
 			);
 			path = portals;
