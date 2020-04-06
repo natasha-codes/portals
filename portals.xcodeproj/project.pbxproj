@@ -20,7 +20,7 @@
 		D98CB7AD243438E600EA4590 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D98CB7AC243438E600EA4590 /* Assets.xcassets */; };
 		D98CB7B0243438E600EA4590 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D98CB7AF243438E600EA4590 /* Preview Assets.xcassets */; };
 		D98CB7B3243438E700EA4590 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D98CB7B1243438E700EA4590 /* Main.storyboard */; };
-		D9C004832436D7E400728BC4 /* WindowManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9C004822436D7E400728BC4 /* WindowManager.swift */; };
+		D9C004832436D7E400728BC4 /* ApplicationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9C004822436D7E400728BC4 /* ApplicationManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -64,7 +64,7 @@
 		D98CB7B2243438E700EA4590 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		D98CB7B4243438E700EA4590 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D98CB7B5243438E700EA4590 /* portals.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = portals.entitlements; sourceTree = "<group>"; };
-		D9C004822436D7E400728BC4 /* WindowManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindowManager.swift; sourceTree = "<group>"; };
+		D9C004822436D7E400728BC4 /* ApplicationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -135,7 +135,7 @@
 				D966CDFD243A60B80039E7BE /* AXSwift+Result.swift */,
 				D98CB7AA243438E600EA4590 /* ContentView.swift */,
 				D966CE03243A7AA80039E7BE /* Result+Getters.swift */,
-				D9C004822436D7E400728BC4 /* WindowManager.swift */,
+				D9C004822436D7E400728BC4 /* ApplicationManager.swift */,
 				D966CE00243A60D20039E7BE /* Supporting Files */,
 			);
 			path = portals;
@@ -224,7 +224,7 @@
 			files = (
 				D98CB7AB243438E600EA4590 /* ContentView.swift in Sources */,
 				D966CE04243A7AA80039E7BE /* Result+Getters.swift in Sources */,
-				D9C004832436D7E400728BC4 /* WindowManager.swift in Sources */,
+				D9C004832436D7E400728BC4 /* ApplicationManager.swift in Sources */,
 				D98CB7A9243438E600EA4590 /* AppDelegate.swift in Sources */,
 				D966CDFE243A60B80039E7BE /* AXSwift+Result.swift in Sources */,
 			);

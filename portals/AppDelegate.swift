@@ -23,7 +23,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             return
         }
 
-        print(WindowManager.shared.getAll())
+        ApplicationManager.shared.getAll().forEach { print($0) }
 
         setupBindings()
         setupWindow()
