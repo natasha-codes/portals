@@ -137,9 +137,9 @@
 				D9C004822436D7E400728BC4 /* ApplicationManager.swift */,
 				D966CDFD243A60B80039E7BE /* AXSwift+Result.swift */,
 				D98CB7AA243438E600EA4590 /* PickerView.swift */,
+				D9CD3D30243AC8C7001C9FA3 /* PreferencesView.swift */,
 				D966CE03243A7AA80039E7BE /* Result+Getters.swift */,
 				D966CE00243A60D20039E7BE /* Supporting Files */,
-				D9CD3D30243AC8C7001C9FA3 /* PreferencesView.swift */,
 			);
 			path = portals;
 			sourceTree = "<group>";
