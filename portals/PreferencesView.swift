@@ -1,23 +1,23 @@
 //
-//  ContentView.swift
+//  PreferencesView.swift
 //  portals
 //
-//  Created by Sasha Weiss on 3/31/20.
+//  Created by Sasha Weiss on 4/5/20.
 //  Copyright © 2020 natasha-codes. All rights reserved.
 //
 
+import Foundation
 import SwiftUI
-import AppKit
 import MASShortcut
 
-struct ContentView: View {
+struct PreferencesView: View {
     var body: some View {
-        BindingsView()
+        ShortcutView()
             .frame(maxWidth: .infinity, maxHeight: .infinity)
     }
 }
 
-struct BindingsView: NSViewRepresentable {
+private struct ShortcutView: NSViewRepresentable {
     typealias NSViewType = MASShortcutView
 
     func makeNSView(context: Context) -> MASShortcutView {
@@ -25,12 +25,12 @@ struct BindingsView: NSViewRepresentable {
         shortcutView.associatedUserDefaultsKey = "SummonPortals"
         return shortcutView
     }
-    
+
     func updateNSView(_ nsView: MASShortcutView, context: Context) {}
 }
 
-struct ContentView_Previews: PreviewProvider {
+struct PreferencesViewPreviews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        PreferencesView()
     }
 }
