@@ -15,12 +15,18 @@ struct ApplicationManager {
     // MARK: Nested types
 
     struct Application: CustomStringConvertible {
-        let pid: pid_t
-        let name: String
         let windows: [Window]
+        private let backingApplication: NSRunningApplication
+
+        var pid: pid_t { backingApplication.processIdentifier }
+        var name: String { backingApplication.localizedName ?? "" }
+
+        fileprivate var isRelevant: Bool {
+            backingApplication.activationPolicy == .regular || !windows.isEmpty
+        }
 
         fileprivate init?(_ application: NSRunningApplication) {
-            guard !application.isTerminated, application.activationPolicy == .regular else {
+            if application.activationPolicy == .prohibited {
                 return nil
             }
 
@@ -35,9 +41,8 @@ struct ApplicationManager {
                 return nil
             }
 
-            self.pid = application.processIdentifier
-            self.name = application.localizedName ?? ""
-            self.windows = windows.compactMap({ Window($0) }).filter({ $0.subrole == .standardWindow })
+            self.windows = windows.compactMap({ Window($0) }).filter({ $0.isRelevant })
+            self.backingApplication = application
         }
 
         var description: String {
@@ -53,7 +58,11 @@ struct ApplicationManager {
 
     struct Window: CustomStringConvertible {
         let title: String
-        fileprivate let subrole: Subrole
+        private let subrole: Subrole
+
+        fileprivate var isRelevant: Bool {
+            subrole == .standardWindow
+        }
 
         fileprivate init?(_ uiElement: UIElement) {
             let titleResult: PAXResult<String> = uiElement.attribute(.title)
@@ -89,15 +98,7 @@ struct ApplicationManager {
 
     /// Get all open applications.
     func getAll() -> [Application] {
-        NSWorkspace.shared.runningApplications.filter({ $0.isRelevant }).compactMap { Application($0) }
-    }
-}
-
-private extension NSRunningApplication {
-    /// Whether or not we want to consider a given NSRunningApplication for our purposes.
-    var isRelevant: Bool {
-        !isTerminated &&
-            activationPolicy == .regular
+        NSWorkspace.shared.runningApplications.compactMap({ Application($0) }).filter { $0.isRelevant }
     }
 }
 
