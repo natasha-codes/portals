@@ -14,37 +14,39 @@ struct PickerView: View {
     var body: some View {
         List {
             ForEach(ApplicationManager.shared.getAll()) { application in
-                PickerRowView(rowItem: application)
+                ApplicationRowGroupView(model: application.asGroupModel)
             }
         }.frame(maxWidth: .infinity, maxHeight: .infinity)
     }
 }
 
-private protocol PickerRowViewModel {
-    var _shortName: String { get }
-    var _longName: String { get }
-    var _icon: NSImage? { get }
+private struct ApplicationRowGroupView: View {
+    struct Model {
+        let applicationRowModel: ApplicationRowView.Model
+        let windowRowModels: [WindowRowView.Model]
+    }
 
-    func onSelect()
-}
+    let model: Model
 
-extension ApplicationManager.Application: Identifiable, PickerRowViewModel {
-    var id: pid_t { pid }
-
-    var _shortName: String { name }
-    var _longName: String { name }
-    var _icon: NSImage? { icon }
-
-    func onSelect() {
-        activate()
+    var body: some View {
+        VStack {
+            ApplicationRowView(model: model.applicationRowModel)
+            ForEach(model.windowRowModels) { WindowRowView(model: $0) }
+        }
     }
 }
 
-private struct PickerRowView: View {
-    let rowItem: PickerRowViewModel
+private struct ApplicationRowView: View {
+    struct Model {
+        let name: String
+        let icon: NSImage?
+        let onSelect: () -> Void
+    }
 
-    var iconView: some View {
-        if let icon = rowItem._icon {
+    let model: Model
+
+    private var iconView: some View {
+        if let icon = model.icon {
             return AnyView(Image(nsImage: icon).resizable())
         } else {
             return AnyView(Rectangle().fill(Color.blue))
@@ -53,28 +55,54 @@ private struct PickerRowView: View {
 
     var body: some View {
         HStack {
-            Spacer(minLength: 4)
-            Text(rowItem._shortName).frame(alignment: .trailing)
             Spacer().frame(width: 16)
             iconView.frame(width: 20, height: 20)
             Spacer().frame(width: 16)
-            Text(rowItem._longName).frame(alignment: .leading)
+            Text(model.name).frame(alignment: .leading)
             Spacer(minLength: 4)
         }.frame(width: 300, height: 30, alignment: .center)
-            .onTapGesture(perform: rowItem.onSelect)
+            .onTapGesture(perform: model.onSelect)
+    }
+}
+
+private struct WindowRowView: View {
+    struct Model: Identifiable {
+        let id: String = UUID().uuidString
+        let name: String
+    }
+
+    let model: Model
+
+    var body: some View {
+        Text("fdas")
+    }
+}
+
+extension ApplicationManager.Application: Identifiable {
+    var id: pid_t { pid }
+}
+
+private extension ApplicationManager.Application {
+    var asGroupModel: ApplicationRowGroupView.Model {
+        ApplicationRowGroupView.Model(applicationRowModel: asRowModel,
+                                      windowRowModels: windows.map({ $0.asModel}))
+    }
+
+    var asRowModel: ApplicationRowView.Model {
+        ApplicationRowView.Model(name: name, icon: icon, onSelect: { self.activate() })
+    }
+}
+
+private extension ApplicationManager.Window {
+    var asModel: WindowRowView.Model {
+        WindowRowView.Model(name: title)
     }
 }
 
 #if DEBUG
 struct PickerViewPreview: PreviewProvider {
     static var previews: some View {
-        Group {
-            PickerView()
-            PickerRowView(rowItem: ApplicationManager.shared.getAll().first!)
-                .previewLayout(.fixed(width: 300, height: 30))
-            PickerRowView(rowItem: ApplicationManager.shared.getAll().last!)
-                .previewLayout(.fixed(width: 300, height: 30))
-        }
+        PickerView()
     }
 }
 #endif
