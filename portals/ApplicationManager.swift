@@ -20,6 +20,7 @@ struct ApplicationManager {
 
         var pid: pid_t { backingApplication.processIdentifier }
         var name: String { backingApplication.localizedName ?? "" }
+        var icon: NSImage? { backingApplication.icon }
 
         fileprivate var isRelevant: Bool {
             backingApplication.activationPolicy == .regular || !windows.isEmpty

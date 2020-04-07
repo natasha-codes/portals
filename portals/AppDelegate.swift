@@ -48,7 +48,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         window.center()
         window.setFrameAutosaveName("Main Window")
 
-        window.contentView = NSHostingView(rootView: PreferencesView())
+        window.contentView = NSHostingView(rootView: PickerView())
         window.makeKeyAndOrderFront(nil)
     }
 }

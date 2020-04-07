@@ -29,8 +29,10 @@ private struct ShortcutView: NSViewRepresentable {
     func updateNSView(_ nsView: MASShortcutView, context: Context) {}
 }
 
+#if DEBUG
 struct PreferencesViewPreviews: PreviewProvider {
     static var previews: some View {
         PreferencesView()
     }
 }
+#endif
