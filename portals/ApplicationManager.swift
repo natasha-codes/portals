@@ -26,6 +26,10 @@ struct ApplicationManager {
             backingApplication.activationPolicy == .regular || !windows.isEmpty
         }
 
+        @discardableResult func activate() -> Bool {
+            backingApplication.activate(options: .activateAllWindows)
+        }
+
         fileprivate init?(_ application: NSRunningApplication) {
             if application.activationPolicy == .prohibited {
                 return nil

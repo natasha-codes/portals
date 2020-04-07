@@ -24,6 +24,8 @@ private protocol PickerRowViewModel {
     var _shortName: String { get }
     var _longName: String { get }
     var _icon: NSImage? { get }
+
+    func onSelect()
 }
 
 extension ApplicationManager.Application: Identifiable, PickerRowViewModel {
@@ -32,6 +34,10 @@ extension ApplicationManager.Application: Identifiable, PickerRowViewModel {
     var _shortName: String { name }
     var _longName: String { name }
     var _icon: NSImage? { icon }
+
+    func onSelect() {
+        activate()
+    }
 }
 
 private struct PickerRowView: View {
@@ -55,6 +61,7 @@ private struct PickerRowView: View {
             Text(rowItem._longName).frame(alignment: .leading)
             Spacer(minLength: 4)
         }.frame(width: 300, height: 30, alignment: .center)
+            .onTapGesture(perform: rowItem.onSelect)
     }
 }
 
