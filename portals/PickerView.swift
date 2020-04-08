@@ -23,7 +23,7 @@ struct PickerView: View {
     let applications = ApplicationManager.shared.getAll()
 
     var body: some View {
-        List {
+        VStack {
             ForEach(applications) { application in
                 ApplicationRowGroupView(model: application.asGroupModel)
                     .listRowInsets(EdgeInsets())
