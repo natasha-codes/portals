@@ -15,6 +15,15 @@ import AXSwift
 class AppDelegate: NSObject, NSApplicationDelegate {
 
     var window: NSWindow!
+    var preferencesWindow: NSWindow!
+
+    func applicationWillResignActive(_ notification: Notification) {
+        window.orderOut(nil)
+    }
+
+    func applicationDidBecomeActive(_ notification: Notification) {
+        window.makeKeyAndOrderFront(nil)
+    }
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         guard accessibilityPermissionsEnabled() else {
@@ -42,11 +51,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     private func setupWindow() {
         window = NSWindow(
             contentRect: NSRect(x: 0, y: 0, width: 480, height: 300),
-            styleMask: [.titled, .closable, .miniaturizable, .resizable, .fullSizeContentView],
+            styleMask: [.titled],
             backing: .buffered, defer: false)
 
         window.center()
-        window.setFrameAutosaveName("Main Window")
 
         window.contentView = NSHostingView(rootView: PickerView())
         window.makeKeyAndOrderFront(nil)
