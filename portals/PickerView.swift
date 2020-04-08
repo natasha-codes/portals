@@ -10,13 +10,26 @@ import SwiftUI
 import AppKit
 import MASShortcut
 
+private extension CGFloat {
+    static let applicationIconSpacing: CGFloat = 16
+    static let applicationIconSize: CGFloat = 20
+
+    static let rowWidth: CGFloat = 800
+    static let rowHeight: CGFloat = 30
+    static let rowMinTrailingSpacing: CGFloat = 16
+}
+
 struct PickerView: View {
+    let applications = ApplicationManager.shared.getAll()
+
     var body: some View {
         List {
-            ForEach(ApplicationManager.shared.getAll()) { application in
+            ForEach(applications) { application in
                 ApplicationRowGroupView(model: application.asGroupModel)
+                    .listRowInsets(EdgeInsets())
             }
-        }.frame(maxWidth: .infinity, maxHeight: .infinity)
+        }
+        .frame(width: .rowWidth)
     }
 }
 
@@ -29,9 +42,15 @@ private struct ApplicationRowGroupView: View {
     let model: Model
 
     var body: some View {
-        VStack {
+        VStack(alignment: .leading, spacing: 0) {
             ApplicationRowView(model: model.applicationRowModel)
+                .frame(width: .rowWidth,
+                       height: .rowHeight,
+                       alignment: .leading)
             ForEach(model.windowRowModels) { WindowRowView(model: $0) }
+                .frame(width: .rowWidth,
+                       height: .rowHeight,
+                       alignment: .leading)
         }
     }
 }
@@ -55,13 +74,13 @@ private struct ApplicationRowView: View {
 
     var body: some View {
         HStack {
-            Spacer().frame(width: 16)
-            iconView.frame(width: 20, height: 20)
-            Spacer().frame(width: 16)
+            Spacer().frame(width: .applicationIconSpacing)
+            iconView.frame(width: .applicationIconSize, height: .applicationIconSize)
+            Spacer().frame(width: .applicationIconSpacing)
             Text(model.name).frame(alignment: .leading)
-            Spacer(minLength: 4)
-        }.frame(width: 300, height: 30, alignment: .center)
-            .onTapGesture(perform: model.onSelect)
+            Spacer(minLength: .rowMinTrailingSpacing)
+        }
+        .onTapGesture(perform: model.onSelect)
     }
 }
 
@@ -74,7 +93,11 @@ private struct WindowRowView: View {
     let model: Model
 
     var body: some View {
-        Text("fdas")
+        HStack {
+            Spacer().frame(width: .applicationIconSize + (.applicationIconSpacing * 2))
+            Text(model.name)
+            Spacer(minLength: .rowMinTrailingSpacing)
+        }
     }
 }
 
