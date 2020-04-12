@@ -14,49 +14,93 @@ import AXSwift
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
 
-    var window: NSWindow!
-    var preferencesWindow: NSWindow!
+    var pickerWindowController: NSWindowController!
+    var preferencesWindowController: NSWindowController!
+    var statusBarItem: NSStatusItem!
 
     func applicationWillResignActive(_ notification: Notification) {
-        window.orderOut(nil)
+        print("Portals will resign active")
+        pickerWindowController.window?.orderOut(nil)
     }
 
     func applicationDidBecomeActive(_ notification: Notification) {
-        window.makeKeyAndOrderFront(nil)
+        print("Portals did become active")
     }
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
-        guard accessibilityPermissionsEnabled() else {
-            print("ERROR: accessibility permissions not enabled")
-            NSRunningApplication.current.terminate()
+        print("Portals did finish launching")
+
+        guard setupApplication() else {
+            NSApp.terminate(nil)
             return
         }
 
-        ApplicationManager.shared.getAll().forEach { print($0) }
-
         setupBindings()
-        setupWindow()
+        setupWindows()
+        setupMenuItem()
     }
 
-    private func accessibilityPermissionsEnabled() -> Bool {
-        checkIsProcessTrusted(prompt: false)
+    private func setupApplication() -> Bool {
+        NSApp.setActivationPolicy(.accessory)
+
+        guard checkIsProcessTrusted(prompt: false) else {
+            print("ERROR: accessibility permissions not enabled")
+            return false
+        }
+
+        return true
     }
 
     private func setupBindings() {
-        MASShortcutBinder.shared()?.bindShortcut(withDefaultsKey: "SummonPortals", toAction: {
-            print("whoooooo we did a thing")
+        MASShortcutBinder.shared()?.bindShortcut(withDefaultsKey: "SummonPortals", toAction: { [weak self] in
+            guard let self = self else { return }
+            
+            self.activate(windowController: self.pickerWindowController)
         })
     }
 
-    private func setupWindow() {
-        window = NSWindow(
-            contentRect: NSRect(x: 0, y: 0, width: 480, height: 300),
-            styleMask: [.titled],
-            backing: .buffered, defer: false)
+    private func setupWindows() {
+        pickerWindowController = createWindowController(withConstructor: PickerView.init)
+        preferencesWindowController = createWindowController(withConstructor: PreferencesView.init, styleMask: [.titled, .closable])
+    }
 
-        window.center()
+    private func createWindowController<T: View>(withConstructor ctor: () -> T, styleMask: NSWindow.StyleMask? = nil) -> NSWindowController {
+        let window = NSWindow(contentRect: NSRect(x: 0, y: 0, width: 1000, height: 1000),
+                              styleMask: styleMask ?? [],
+                              backing: .buffered,
+                              defer: false,
+                              screen: nil)
 
-        window.contentView = NSHostingView(rootView: PickerView())
-        window.makeKeyAndOrderFront(nil)
+        window.contentView = NSHostingView(rootView: ctor())
+        return NSWindowController(window: window)
+    }
+
+    private func setupMenuItem() {
+        statusBarItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.squareLength)
+
+        statusBarItem.button?.title = "⛱"
+        statusBarItem.menu = NSMenu(title: "Portals Status Bar Menu")
+
+        statusBarItem.menu!.addItem(withTitle: "Preferences",
+                                    action: #selector(didTapPreferences),
+                                    keyEquivalent: "")
+
+        let quitMenuItem = NSMenuItem(title: "Quit Portals", action: #selector(didTapQuit), keyEquivalent: "q")
+        quitMenuItem.keyEquivalentModifierMask = .command
+        statusBarItem.menu!.addItem(quitMenuItem)
+    }
+
+    @objc private func didTapPreferences() {
+        activate(windowController: preferencesWindowController)
+    }
+
+    private func activate(windowController controller: NSWindowController) {
+        controller.window?.center()
+        controller.showWindow(nil)
+        NSApp.activate(ignoringOtherApps: true)
+    }
+
+    @objc private func didTapQuit() {
+        NSApp.terminate(nil)
     }
 }
