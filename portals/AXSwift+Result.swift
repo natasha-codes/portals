@@ -35,7 +35,7 @@ private extension UIElement {
     /// func foo() throws -> Int { throw "whoops" }
     /// let fooResult: Result<Int> = coerceThrow(foo)
     /// ```
-    func coerceThrow<T>(_ f: () throws -> T?) -> PAXResult<T> {
+    func coerceThrow<T>(inFile file: String = #file, onLine line: Int = #line, _ f: () throws -> T?) -> PAXResult<T> {
         do {
             if let value = try f() {
                 return .success(value)
@@ -45,7 +45,7 @@ private extension UIElement {
         } catch let e as AXError {
             return .failure(.real(e))
         } catch let e {
-            unreachable(message: "Expected AXError, got: \(e)")
+            unreachable(message: "Expected AXError, got: \(e)", inFile: file, onLine: line)
         }
     }
 }
@@ -58,9 +58,13 @@ extension UIElement {
     func attribute<T>(_ attr: Attribute) -> PAXResult<T> {
         return coerceThrow { try attribute(attr) }
     }
+
+    func performAction(_ action: Action) -> PAXResult<Void> {
+        return coerceThrow { try performAction(action) }
+    }
 }
 
-extension Application {
+extension AXSwift.Application {
     func windows() -> PAXResult<[UIElement]> {
         coerceThrow(windows)
     }

@@ -9,6 +9,14 @@
 import Foundation
 
 extension Result {
+    var isSuccess: Bool {
+        return failure == nil
+    }
+
+    var isFailure: Bool {
+        return success == nil
+    }
+
     var success: Success? {
         switch self {
         case .success(let s): return s

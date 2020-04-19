@@ -23,7 +23,7 @@ struct PickerView: View {
     let applications = ApplicationManager.shared.getAll()
 
     var body: some View {
-        VStack {
+        VStack(alignment: .leading, spacing: 0) {
             ForEach(applications) { application in
                 ApplicationRowGroupView(model: application.asGroupModel)
                     .listRowInsets(EdgeInsets())
@@ -80,6 +80,7 @@ private struct ApplicationRowView: View {
             Text(model.name).frame(alignment: .leading)
             Spacer(minLength: .rowMinTrailingSpacing)
         }
+        .contentShape(Rectangle()) // Capture taps in spacers
         .onTapGesture(perform: model.onSelect)
     }
 }
@@ -88,6 +89,7 @@ private struct WindowRowView: View {
     struct Model: Identifiable {
         let id: String = UUID().uuidString
         let name: String
+        let onSelect: () -> Void
     }
 
     let model: Model
@@ -98,27 +100,37 @@ private struct WindowRowView: View {
             Text(model.name)
             Spacer(minLength: .rowMinTrailingSpacing)
         }
+        .contentShape(Rectangle()) // Capture taps in spacers
+        .onTapGesture(perform: model.onSelect)
     }
 }
 
-extension ApplicationManager.Application: Identifiable {
+extension Application: Identifiable {
     var id: pid_t { pid }
 }
 
-private extension ApplicationManager.Application {
+private extension Application {
     var asGroupModel: ApplicationRowGroupView.Model {
-        ApplicationRowGroupView.Model(applicationRowModel: asRowModel,
-                                      windowRowModels: windows.map({ $0.asModel}))
-    }
+        let applicationRowModel = ApplicationRowView.Model(
+            name: name,
+            icon: icon,
+            onSelect: { self.activate(allWindows: true) }
+        )
 
-    var asRowModel: ApplicationRowView.Model {
-        ApplicationRowView.Model(name: name, icon: icon, onSelect: { self.activate() })
-    }
-}
+        let windowRowModels: [WindowRowView.Model] = windows.map { window in
+            WindowRowView.Model(
+                name: window.title,
+                onSelect: {
+                    window.raise()
+                    self.activate(allWindows: false)
+                }
+            )
+        }
 
-private extension ApplicationManager.Window {
-    var asModel: WindowRowView.Model {
-        WindowRowView.Model(name: title)
+        return ApplicationRowGroupView.Model(
+            applicationRowModel: applicationRowModel,
+            windowRowModels: windowRowModels
+        )
     }
 }
 
