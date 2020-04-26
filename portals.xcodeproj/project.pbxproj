@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		D90E0F892436C7A300C1CCAD /* MASShortcut.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D90E0F882436C7A300C1CCAD /* MASShortcut.framework */; };
 		D90E0F8A2436C7A300C1CCAD /* MASShortcut.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D90E0F882436C7A300C1CCAD /* MASShortcut.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		D9163890245619C200AF6B8B /* WindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D916388F245619C200AF6B8B /* WindowController.swift */; };
 		D95898C4243942DA00ADDB46 /* AXSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D95898C3243942DA00ADDB46 /* AXSwift.framework */; };
 		D95898C5243942DA00ADDB46 /* AXSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D95898C3243942DA00ADDB46 /* AXSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		D966CDFE243A60B80039E7BE /* AXSwift+Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = D966CDFD243A60B80039E7BE /* AXSwift+Result.swift */; };
@@ -54,6 +55,7 @@
 
 /* Begin PBXFileReference section */
 		D90E0F882436C7A300C1CCAD /* MASShortcut.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MASShortcut.framework; path = Carthage/Build/Mac/MASShortcut.framework; sourceTree = "<group>"; };
+		D916388F245619C200AF6B8B /* WindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindowController.swift; sourceTree = "<group>"; };
 		D95898C3243942DA00ADDB46 /* AXSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AXSwift.framework; path = Carthage/Build/Mac/AXSwift.framework; sourceTree = "<group>"; };
 		D966CDFD243A60B80039E7BE /* AXSwift+Result.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AXSwift+Result.swift"; sourceTree = "<group>"; };
 		D966CE03243A7AA80039E7BE /* Result+Getters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Result+Getters.swift"; sourceTree = "<group>"; };
@@ -141,6 +143,7 @@
 				D98CB7AA243438E600EA4590 /* PickerView.swift */,
 				D9CD3D30243AC8C7001C9FA3 /* PreferencesView.swift */,
 				D966CE03243A7AA80039E7BE /* Result+Getters.swift */,
+				D916388F245619C200AF6B8B /* WindowController.swift */,
 				D966CE00243A60D20039E7BE /* Supporting Files */,
 			);
 			path = portals;
@@ -231,6 +234,7 @@
 			files = (
 				D98CB7AB243438E600EA4590 /* PickerView.swift in Sources */,
 				D9CD3D31243AC8C7001C9FA3 /* PreferencesView.swift in Sources */,
+				D9163890245619C200AF6B8B /* WindowController.swift in Sources */,
 				D966CE04243A7AA80039E7BE /* Result+Getters.swift in Sources */,
 				D9C004832436D7E400728BC4 /* ApplicationManager.swift in Sources */,
 				D98CB7A9243438E600EA4590 /* AppDelegate.swift in Sources */,

@@ -14,13 +14,13 @@ import AXSwift
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
 
-    var pickerWindowController: NSWindowController!
-    var preferencesWindowController: NSWindowController!
+    var pickerWindowController: WindowController!
+    var preferencesWindowController: WindowController!
     var statusBarItem: NSStatusItem!
 
     func applicationWillResignActive(_ notification: Notification) {
         print("Portals will resign active")
-        pickerWindowController.window?.orderOut(nil)
+        pickerWindowController.hide()
     }
 
     func applicationDidBecomeActive(_ notification: Notification) {
@@ -53,26 +53,13 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     private func setupBindings() {
         MASShortcutBinder.shared()?.bindShortcut(withDefaultsKey: "SummonPortals", toAction: { [weak self] in
-            guard let self = self else { return }
-            
-            self.activate(windowController: self.pickerWindowController)
+            self?.pickerWindowController.show()
         })
     }
 
     private func setupWindows() {
-        pickerWindowController = createWindowController(withConstructor: PickerView.init)
-        preferencesWindowController = createWindowController(withConstructor: PreferencesView.init, styleMask: [.titled, .closable])
-    }
-
-    private func createWindowController<T: View>(withConstructor ctor: () -> T, styleMask: NSWindow.StyleMask? = nil) -> NSWindowController {
-        let window = NSWindow(contentRect: NSRect(x: 0, y: 0, width: 1000, height: 1000),
-                              styleMask: styleMask ?? [],
-                              backing: .buffered,
-                              defer: false,
-                              screen: nil)
-
-        window.contentView = NSHostingView(rootView: ctor())
-        return NSWindowController(window: window)
+        pickerWindowController = WindowController(view: PickerView())
+        preferencesWindowController = WindowController(view: PreferencesView(), styleMask: [.titled, .closable])
     }
 
     private func setupMenuItem() {
@@ -91,13 +78,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
 
     @objc private func didTapPreferences() {
-        activate(windowController: preferencesWindowController)
-    }
-
-    private func activate(windowController controller: NSWindowController) {
-        controller.window?.center()
-        controller.showWindow(nil)
-        NSApp.activate(ignoringOtherApps: true)
+        preferencesWindowController.show()
     }
 
     @objc private func didTapQuit() {
