@@ -25,6 +25,7 @@
 		D9B3D13B244A83510079E1FB /* MASShortcut.framework.dSYM in CopyFiles */ = {isa = PBXBuildFile; fileRef = D9B3D137244A83490079E1FB /* MASShortcut.framework.dSYM */; };
 		D9C004832436D7E400728BC4 /* ApplicationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9C004822436D7E400728BC4 /* ApplicationManager.swift */; };
 		D9CD3D31243AC8C7001C9FA3 /* PreferencesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9CD3D30243AC8C7001C9FA3 /* PreferencesView.swift */; };
+		D9F37B5E245A54D6003EDB5F /* KeypressManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9F37B5D245A54D6003EDB5F /* KeypressManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -71,6 +72,7 @@
 		D9B3D137244A83490079E1FB /* MASShortcut.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; name = MASShortcut.framework.dSYM; path = Carthage/Build/Mac/MASShortcut.framework.dSYM; sourceTree = "<group>"; };
 		D9C004822436D7E400728BC4 /* ApplicationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationManager.swift; sourceTree = "<group>"; };
 		D9CD3D30243AC8C7001C9FA3 /* PreferencesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesView.swift; sourceTree = "<group>"; };
+		D9F37B5D245A54D6003EDB5F /* KeypressManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeypressManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -145,6 +147,7 @@
 				D966CE03243A7AA80039E7BE /* Result+Getters.swift */,
 				D916388F245619C200AF6B8B /* WindowController.swift */,
 				D966CE00243A60D20039E7BE /* Supporting Files */,
+				D9F37B5D245A54D6003EDB5F /* KeypressManager.swift */,
 			);
 			path = portals;
 			sourceTree = "<group>";
@@ -233,6 +236,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D98CB7AB243438E600EA4590 /* PickerView.swift in Sources */,
+				D9F37B5E245A54D6003EDB5F /* KeypressManager.swift in Sources */,
 				D9CD3D31243AC8C7001C9FA3 /* PreferencesView.swift in Sources */,
 				D9163890245619C200AF6B8B /* WindowController.swift in Sources */,
 				D966CE04243A7AA80039E7BE /* Result+Getters.swift in Sources */,

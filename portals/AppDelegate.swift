@@ -35,9 +35,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             return
         }
 
-        setupBindings()
         setupWindows()
         setupMenuItem()
+
+        KeypressManager.shared.delegate = self
     }
 
     private func setupApplication() -> Bool {
@@ -49,12 +50,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
 
         return true
-    }
-
-    private func setupBindings() {
-        MASShortcutBinder.shared()?.bindShortcut(withDefaultsKey: "SummonPortals", toAction: { [weak self] in
-            self?.pickerWindowController.show()
-        })
     }
 
     private func setupWindows() {
@@ -83,5 +78,15 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     @objc private func didTapQuit() {
         NSApp.terminate(nil)
+    }
+}
+
+extension AppDelegate: KeypressManagerDelegate {
+    func tabForwardPressed() {
+        self.pickerWindowController?.show()
+    }
+
+    func tabReleased() {
+        self.pickerWindowController?.hide()
     }
 }
