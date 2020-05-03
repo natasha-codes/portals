@@ -142,12 +142,12 @@
 				D98CB7A8243438E600EA4590 /* AppDelegate.swift */,
 				D9C004822436D7E400728BC4 /* ApplicationManager.swift */,
 				D966CDFD243A60B80039E7BE /* AXSwift+Result.swift */,
+				D9F37B5D245A54D6003EDB5F /* KeypressManager.swift */,
 				D98CB7AA243438E600EA4590 /* PickerView.swift */,
 				D9CD3D30243AC8C7001C9FA3 /* PreferencesView.swift */,
 				D966CE03243A7AA80039E7BE /* Result+Getters.swift */,
 				D916388F245619C200AF6B8B /* WindowController.swift */,
 				D966CE00243A60D20039E7BE /* Supporting Files */,
-				D9F37B5D245A54D6003EDB5F /* KeypressManager.swift */,
 			);
 			path = portals;
 			sourceTree = "<group>";
